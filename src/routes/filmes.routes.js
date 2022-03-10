@@ -1,13 +1,14 @@
 const { Router } = require('express');
+const { FilmesController } = require('../controllers/filmes.controller');
 
 const routes = Router();
 
-routes.get('/', (req, res) => {
-    return res.send("Essa deveria ser a listagem de filmes");
-});
+const filmesController= new FilmesController();
 
-routes.get('/:id', (req, res) => {
-    return res.send("Essa deveria detalhar um filme");
-});
+routes.get('/', filmesController.listar);
+
+routes.get('/:id', filmesController.detalhar);
+
+routes.post('/', filmesController.cadastrar)
 
 module.exports = routes;
